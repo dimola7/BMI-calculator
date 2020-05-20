@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BMI calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head>
+
+<body class='body'>
+    <div id="bmi" class="container shadow-lg p-3 mb-5 rounded">
+        <h1 v-bind:title='bmi'>{{ message }}</h1>
+        <p>Fill in your weight and height<button type="button" class="new btn btn-secondary" @click='changeUnit'>Change
+                Unit</button> <button type="button" class="new btn btn-secondary" @click='clearInput'>Reset</button></p>
+
+        <div class="input-group mb-3">
+            <input type="number" v-model='weight' class="form-control" placeholder="Add weight in kg"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <form v-if='toFeet'>
+            <div class="row mb-3">
+                <div class="col">
+                    <input v-model='feet' type="number" class="form-control" placeholder="Feet">
+                </div>
+                <div class="col">
+                    <input v-model='inches' type="number" class="form-control" placeholder="Inches">
+                </div>
+            </div>
+        </form>
+
+        <div class="input-group mb-3">
+            <input type="number" v-model='height' v-if='! toFeet' class="form-control" placeholder="Add height in cm"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <button v-if='toFeet' type="button" class="btn btn-secondary btn-lg btn-block"
+            @click='calculateInFeet'>calculate</button>
+        <button v-if='! toFeet' type="button" class="btn btn-secondary btn-lg btn-block"
+            @click='calculate'>calculate</button>
+        <hr>
+        <p>Your BMI is</p>
+        <h1>{{ result }}</h1>
+        <hr>
+        <p v-if='result == 0' class='health'>Health is wealth</p>
+        <p v-else-if='result > 0 && result < 18.5' class='health'>You are Underweight</p>
+        <p v-else-if='result >= 18.5 && result <= 24.9' class='health'>You are Healthy</p>
+        <p v-else-if='result >= 25.0 && result <= 29.9' class='health'>You are Overweight</p>
+        <p v-else class='health'>You are Obese</p>
+
+        <a v-if='result == 0' href=""></a>
+        <a href="https://healthyeating.sfgate.com/recommendations-someone-underweight-2079.html"
+            v-else-if='result > 0 && result < 18.5' class='advice'>Advice?</a>
+        <a v-else-if='result >= 25.0 && result <= 29.9'
+            href="https://www.sophiederam.com/en/blog/eating-behavior/tips-for-overweight-people/"
+            class='advice'>Advice?</a>
+        <a href="https://www.nhs.uk/conditions/obesity/" v-else class='advice'>Advice?</a>
+
+    </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.body {
+  padding-top: 50px;
+  background-color: #f6e58d;
+}
+#bmi {
+  background-color: #f2f2f2;
+}
+h1 {
+  text-align: center;
+}
+.new {
+  float: right;
+  margin-bottom: 20px;
+  margin-right: 8px;
+}
+.health {
+  color: green;
+  font-size: 20px;
+}
+.advice {
+  float: right;
+  position: relative;
+  bottom: 40px;
+}
